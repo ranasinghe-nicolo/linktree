@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Mia Pagina Linktree</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="profile">
+            <img src="foto_profilo.jpg" alt="Profilo">
+        </div>
+        <h1 class="username">Luca Marastoni</h1>
+        <div class="links">
+            <a href="https://www.example.com" class="link-item">
+                <div class="icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <span>Lampadina</span>
+            </a>
+            <a href="https://www.linkedin.com" class="link-item">
+                <div class="icon">
+                    <i class="fab fa-linkedin"></i>
+                </div>
+                <span>LinkedIn</span>
+            </a>
+            <a href="https://www.example.com" class="link-item">
+                <div class="icon">
+                    <i class="fas fa-ghost"></i>
+                </div>
+                <span>Fantasmino</span>
+            </a>
+        </div>
+        <!-- Bottone Privacy Policy -->
+        <div class="privacy-container">
+            <button class="privacy-button" onclick="togglePrivacyPopup()">Privacy Policy & Cookie Policy</button>
+        </div>
+    </div>
+
+    <!-- Popup Privacy Policy -->
+    <div id="privacy-popup" class="privacy-popup">
+        <div class="privacy-popup-content">
+            <span class="close" onclick="togglePrivacyPopup()">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>Questo sito non raccoglie alcun dato personale degli utenti. Non utilizziamo cookie per scopi di statistica o profilazione. La pagina fornisce semplicemente tre link a contenuti esterni senza interazione diretta con gli utenti.</p>
+            <h3>Cookie Policy</h3>
+            <p>Non utilizziamo cookie, né di prima né di terza parte, per raccogliere informazioni sugli utenti.</p>
+        </div>
+    </div>
+
+    <script>
+        function togglePrivacyPopup() {
+            const popup = document.getElementById('privacy-popup');
+            const isVisible = popup.classList.contains('show');
+
+            if (isVisible) {
+                popup.classList.remove('show'); // Chiudi popup
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 300); // Tempo per permettere l'animazione
+            } else {
+                popup.style.display = 'block'; // Mostra popup
+                setTimeout(() => {
+                    popup.classList.add('show');
+                }, 10); // Ritardo per attivare l'animazione
+            }
+        }
+
+        // Chiudi popup cliccando fuori
+        document.addEventListener('click', (event) => {
+            const popup = document.getElementById('privacy-popup');
+            const content = document.querySelector('.privacy-popup-content');
+            
+            if (popup.style.display === 'block' && !content.contains(event.target) && !event.target.closest('.privacy-button')) {
+                togglePrivacyPopup();
+            }
+        });
+    </script>
+</body>
+</html>
